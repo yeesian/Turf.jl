@@ -1,4 +1,4 @@
-function remove(collection::GeoJSON.FeatureCollection, key::String, value::String)
+function remove(collection::GeoJSON.FeatureCollection, key::AbstractString, value::AbstractString)
     fc = GeoJSON.FeatureCollection()
     for feature in collection.features
         if haskey(feature.properties, key) && feature.properties[key] != value
@@ -8,7 +8,7 @@ function remove(collection::GeoJSON.FeatureCollection, key::String, value::Strin
     fc
 end
 
-function remove(collection::GeoJSON.FeatureCollection, key::String, value::Integer)
+function remove(collection::GeoJSON.FeatureCollection, key::AbstractString, value::Integer)
     fc = GeoJSON.FeatureCollection()
     for feature in collection.features
         if haskey(feature.properties, key) && feature.properties[key] != value
@@ -18,7 +18,7 @@ function remove(collection::GeoJSON.FeatureCollection, key::String, value::Integ
     fc
 end
 
-function filter(collection::GeoJSON.FeatureCollection, property::String, value::String)
+function filter(collection::GeoJSON.FeatureCollection, property::AbstractString, value::AbstractString)
     fc = GeoJSON.FeatureCollection()
     for feature in collection.features
         if haskey(feature.properties, key) && feature.properties[key] == value
@@ -28,7 +28,7 @@ function filter(collection::GeoJSON.FeatureCollection, property::String, value::
     fc
 end
 
-function filter(collection::GeoJSON.FeatureCollection, key::String, value::Integer)
+function filter(collection::GeoJSON.FeatureCollection, key::AbstractString, value::Integer)
     fc = GeoJSON.FeatureCollection()
     for feature in collection.features
         if haskey(feature.properties, key) && feature.properties[key] == value

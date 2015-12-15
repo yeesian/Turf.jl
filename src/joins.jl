@@ -2,7 +2,7 @@
 
 # pt is [x,y] and ring is [[x,y], [x,y],..]
 function inring(pt::Vector{Float64}, ring::Vector{Vector{Float64}})
-    intersect(i::Vector{Float64},j::Vector{Float64}) = 
+    intersect(i::Vector{Float64},j::Vector{Float64}) =
         (i[2] >= pt[2]) != (j[2] >= pt[2]) && (pt[1] <= (j[1] - i[1]) * (pt[2] - i[2]) / (j[2] - i[2]) + i[1])
     isinside = intersect(ring[1], ring[end])
     for k=2:length(ring)
@@ -133,11 +133,11 @@ within(collection::GeoJSON.FeatureCollection, polygon::GeoJSON.FeatureCollection
 # end
 
 # function tag()
-function tag(points::GeoJSON.FeatureCollection, polygons::GeoJSON.FeatureCollection, field::String, outfield::String)
+function tag(points::GeoJSON.FeatureCollection, polygons::GeoJSON.FeatureCollection, field::AbstractString, outfield::AbstractString)
     tagpoints = deepcopy(points)
     for pt in tagpoints.features
         if pt.properties == nothing
-            pt.properties = Dict{String,Any}()
+            pt.properties = Dict{AbstractString,Any}()
         end
         for poly in polygons.features
             if !haskey(pt.properties, outfield)

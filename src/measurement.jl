@@ -36,7 +36,7 @@ function polygonarea(coords::Vector{Vector{Vector{Float64}}})
         return 0.0
     end
 end
-polygonarea(obj::Nothing) = 0.0
+polygonarea(obj::Void) = 0.0
 
 area(obj::GeoJSON.Point) = 0.0
 area(obj::GeoJSON.MultiPoint) = 0.0
@@ -113,13 +113,13 @@ lowleft(obj::GeoJSON.Feature) = lowleft(obj.geometry)
 lowleft(obj::GeoJSON.FeatureCollection) = lowleft(map(lowleft, obj.features))
 
 extent(obj::GeoJSON.Point) = obj.coordinates
-extent(obj::GeoJSON.MultiPoint) = [topright(obj), lowleft(obj)]
-extent(obj::GeoJSON.LineString) = [topright(obj), lowleft(obj)]
-extent(obj::GeoJSON.MultiLineString) = [topright(obj), lowleft(obj)]
-extent(obj::GeoJSON.Polygon) = [topright(obj), lowleft(obj)]
-extent(obj::GeoJSON.MultiPolygon) = [topright(obj), lowleft(obj)]
-extent(obj::GeoJSON.Feature) = [topright(obj), lowleft(obj)]
-extent(obj::GeoJSON.FeatureCollection) = [topright(obj), lowleft(obj)]
+extent(obj::GeoJSON.MultiPoint) = [topright(obj); lowleft(obj)]
+extent(obj::GeoJSON.LineString) = [topright(obj); lowleft(obj)]
+extent(obj::GeoJSON.MultiLineString) = [topright(obj); lowleft(obj)]
+extent(obj::GeoJSON.Polygon) = [topright(obj); lowleft(obj)]
+extent(obj::GeoJSON.MultiPolygon) = [topright(obj); lowleft(obj)]
+extent(obj::GeoJSON.Feature) = [topright(obj); lowleft(obj)]
+extent(obj::GeoJSON.FeatureCollection) = [topright(obj); lowleft(obj)]
 
 envelope(obj::GeoJSON.AbstractGeoJSON) = bboxpolygon(extent(obj))
 
