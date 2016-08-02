@@ -62,7 +62,6 @@ function nearest(target::GeoJSON.Point, points::GeoJSON.FeatureCollection)
         return deepcopy(nearest_feature)
     end
 end
-nearest(target::GeoJSON.Feature, points::GeoJSON.FeatureCollection) = nearest(target.geometry, points)
 
 function nearest(target::GeoJSON.Point, points::GeoJSON.GeometryCollection)
     if length(points.geometries) > 0
