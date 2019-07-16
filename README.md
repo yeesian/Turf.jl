@@ -7,6 +7,8 @@
 
 This library is a port of Turf.js to the Julia programming language for geospatial analysis.
 
+**NOTE**: This package is no longer being actively developed. Please see https://github.com/philoez98/Turf.jl instead.
+
 ## Installation
 
 `Turf.jl` is not a listed package (yet). Heres what you're going to need to do to install it:
